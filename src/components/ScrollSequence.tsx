@@ -103,7 +103,7 @@ export default function ScrollSequence() {
 
                 {/* Text Container - Absolute on top of canvas */}
                 <motion.div
-                    className="absolute inset-0 flex flex-col items-center justify-start pointer-events-none z-50 top-0 pt-4 md:pt-8"
+                    className="absolute inset-0 flex flex-col items-center justify-start pointer-events-none z-50 top-0"
                     style={{
                         opacity: textOpacity,
                         scale: textScale,
@@ -112,7 +112,7 @@ export default function ScrollSequence() {
                 >
                     {/* H1 and P use strict text-center just in case */}
                     <motion.h1
-                        className="text-[15vw] md:text-[12vw] leading-none font-bold tracking-tighter text-white drop-shadow-2xl text-center w-full"
+                        className="text-[15vw] md:text-[12vw] leading-[0.8] font-bold tracking-tighter text-white drop-shadow-2xl text-center w-full mt-4 md:mt-6"
                         style={{ filter: useMotionTemplate`blur(${textBlurVal}px)` }}
                     >
                         ZEROSHOT
