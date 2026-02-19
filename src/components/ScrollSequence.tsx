@@ -103,7 +103,7 @@ export default function ScrollSequence() {
 
                 {/* Text Container - Absolute on top of canvas */}
                 <motion.div
-                    className="absolute inset-0 flex flex-col items-center justify-start pointer-events-none z-50 top-0"
+                    className="absolute top-0 left-0 w-full flex flex-col items-center pt-8 md:pt-12 pointer-events-none z-50"
                     style={{
                         opacity: textOpacity,
                         scale: textScale,
