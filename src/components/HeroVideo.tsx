@@ -24,21 +24,49 @@ export default function HeroVideo() {
                 loop
                 muted
                 playsInline
-                className="absolute inset-0 h-full w-full object-cover opacity-60 z-0"
+                className="absolute inset-0 h-full w-full object-cover opacity-50 z-0"
             >
                 <source src="/assets/Slow_motion_video_1080p_202602171925.mp4" type="video/mp4" />
             </video>
 
             {/* Dark Overlay for contrast */}
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            <div className="absolute inset-0 bg-black/60 z-10" />
+
+            {/* CRT Scanline Overlay */}
+            <div
+                className="absolute inset-0 z-20 pointer-events-none opacity-20"
+                style={{
+                    background: `repeating-linear-gradient(
+                        0deg,
+                        transparent,
+                        transparent 2px,
+                        #000 2px,
+                        #000 4px
+                    )`
+                }}
+            />
 
             {/* Content Container - Centered and strictly on top */}
-            <div className="absolute inset-0 h-full w-full flex items-center justify-center p-8 z-30">
+            <div className="absolute inset-0 h-full w-full flex items-center justify-center p-8 z-30 pointer-events-none">
                 <div className="max-w-5xl w-full text-center">
-                    <p className="text-3xl md:text-5xl font-sans font-bold text-white leading-tight tracking-tight whitespace-pre-wrap drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] inline">
+                    <p
+                        className="text-3xl md:text-5xl text-[#00FF00] leading-tight tracking-tight whitespace-pre-wrap inline"
+                        style={{
+                            fontFamily: "var(--font-space-mono)",
+                            textShadow: "0 0 10px rgba(0,255,0,0.8), 0 0 20px rgba(0,255,0,0.4)"
+                        }}
+                    >
                         {text}
                     </p>
-                    <span className="w-2 h-8 md:h-12 bg-indigo-500 inline-block ml-2 animate-pulse align-middle shadow-[0_0_15px_rgba(99,102,241,0.5)]" />
+                    <span
+                        className="text-3xl md:text-5xl text-[#00FF00] inline-block ml-1 animate-pulse"
+                        style={{
+                            fontFamily: "var(--font-space-mono)",
+                            textShadow: "0 0 10px rgba(0,255,0,0.8)"
+                        }}
+                    >
+                        _
+                    </span>
                 </div>
             </div>
         </section>
