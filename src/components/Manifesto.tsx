@@ -46,7 +46,7 @@ export default function Manifesto() {
                 <div className="absolute inset-0 bg-indigo-900/20">
                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                         <img
-                            src="/assets/End Image.jpg"
+                            src="/assets/After.png"
                             alt="The ZeroShot Way"
                             className="absolute inset-0 w-full h-full object-cover object-center scale-[1.02]"
                         />
@@ -66,7 +66,7 @@ export default function Manifesto() {
                 >
                     <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
                         <img
-                            src="/assets/Starting Image_1.jpg"
+                            src="/assets/Before.jpg"
                             alt="The Old Way"
                             className="absolute inset-0 w-full h-full object-cover object-center opacity-30 grayscale contrast-125 scale-[1.02]"
                         />
