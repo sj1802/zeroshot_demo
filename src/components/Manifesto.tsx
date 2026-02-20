@@ -29,7 +29,7 @@ export default function Manifesto() {
             <div
                 ref={containerRef}
                 className="relative w-full mx-auto overflow-hidden cursor-ew-resize group"
-                style={{ height: "70vh", minHeight: "500px", maxWidth: "1600px" }}
+                style={{ height: "85vh", minHeight: "600px", maxWidth: "1600px" }}
                 onMouseMove={handleMouseMove}
                 onTouchMove={handleTouchMove}
             >
@@ -44,20 +44,11 @@ export default function Manifesto() {
                         left: 0,
                         width: "100%",
                         height: "100%",
-                        objectFit: "cover",
+                        objectFit: "contain",
                         objectPosition: "center",
-                        filter: "saturate(1.5)",
                     }}
                 />
-                <div
-                    style={{
-                        position: "absolute",
-                        inset: 0,
-                        backgroundColor: "rgba(49, 46, 129, 0.3)",
-                        mixBlendMode: "overlay",
-                        zIndex: 1,
-                    }}
-                />
+
                 {/* ZeroShot Label */}
                 <div
                     style={{
@@ -102,9 +93,8 @@ export default function Manifesto() {
                             left: 0,
                             width: "100%",
                             height: "100%",
-                            objectFit: "cover",
+                            objectFit: "contain",
                             objectPosition: "center",
-                            filter: "grayscale(1) brightness(0.75)",
                         }}
                     />
                     {/* Old Way Label */}
