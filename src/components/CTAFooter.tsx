@@ -176,11 +176,11 @@ export default function CTAFooter() {
 
                 {/* Footer grid */}
                 <div
-                    className="footer-grid"
                     style={{
-                        display: "grid",
-                        gridTemplateColumns: "2fr 1fr 1fr 1fr",
-                        gap: "48px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textAlign: "center",
                         padding: "64px 0 48px",
                     }}
                 >
@@ -210,7 +210,7 @@ export default function CTAFooter() {
                                 color: "rgba(255,255,255,0.35)",
                                 fontSize: "0.875rem",
                                 lineHeight: 1.7,
-                                maxWidth: "300px",
+                                maxWidth: "400px",
                             }}
                         >
                             Cinematic production studio redefining visual content for modern brands.
@@ -248,55 +248,6 @@ export default function CTAFooter() {
                             ))}
                         </div>
                     </div>
-
-                    {/* Links columns */}
-                    {[
-                        {
-                            title: "Services",
-                            links: ["Video Production", "3D Modeling", "Sound Design", "Color Grading"],
-                        },
-                        {
-                            title: "Company",
-                            links: ["About", "Careers", "Blog", "Contact"],
-                        },
-                        {
-                            title: "Legal",
-                            links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
-                        },
-                    ].map((col) => (
-                        <div key={col.title}>
-                            <h4
-                                style={{
-                                    fontSize: "0.8rem",
-                                    fontWeight: 700,
-                                    letterSpacing: "0.15em",
-                                    color: "rgba(255,255,255,0.5)",
-                                    marginBottom: "20px",
-                                    textTransform: "uppercase",
-                                }}
-                            >
-                                {col.title}
-                            </h4>
-                            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                                {col.links.map((link) => (
-                                    <li key={link} style={{ marginBottom: "12px" }}>
-                                        <a
-                                            href="#"
-                                            className="footer-link"
-                                            style={{
-                                                color: "rgba(255,255,255,0.35)",
-                                                textDecoration: "none",
-                                                fontSize: "0.9rem",
-                                                transition: "color 0.2s ease",
-                                            }}
-                                        >
-                                            {link}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
                 </div>
 
                 {/* Bottom bar */}
@@ -335,14 +286,7 @@ export default function CTAFooter() {
                     color: #818cf8 !important;
                     transform: translateY(-2px);
                 }
-                .footer-link:hover {
-                    color: rgba(255,255,255,0.8) !important;
-                }
                 @media (max-width: 768px) {
-                    .footer-grid {
-                        grid-template-columns: 1fr !important;
-                        gap: 32px !important;
-                    }
                     .footer-bottom {
                         flex-direction: column !important;
                         gap: 8px !important;
