@@ -1,6 +1,7 @@
 import HeroVideo from "@/components/HeroVideo";
 import ScrollSequence from "@/components/ScrollSequence";
 import Manifesto from "@/components/Manifesto";
+import Showcase from "@/components/Showcase";
 import Gallery from "@/components/Gallery";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
@@ -17,6 +18,7 @@ export default function Home() {
       </section>
 
       <Manifesto />
+      <Showcase />
       <Gallery />
       <Process />
       <Pricing />
