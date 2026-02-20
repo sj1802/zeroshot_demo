@@ -3,11 +3,41 @@
 import { motion } from "framer-motion";
 
 const projectItems = [
-    { id: 1, title: "Cyber Punk", category: "Commercial", color: "bg-red-500" },
-    { id: 2, title: "Neon Nights", category: "Music Video", color: "bg-blue-500" },
-    { id: 3, title: "Desert Storm", category: "Documentary", color: "bg-yellow-500" },
-    { id: 4, title: "Urban Jungle", category: "Fashion", color: "bg-green-500" },
-    { id: 5, title: "Deep Space", category: "CGI", color: "bg-purple-500" },
+    {
+        id: 1,
+        title: "Cyber Punk",
+        category: "Commercial",
+        image: "https://picsum.photos/seed/cyberpunk/1200/800",
+        span: "md:col-span-2",
+    },
+    {
+        id: 2,
+        title: "Neon Nights",
+        category: "Music Video",
+        image: "https://picsum.photos/seed/neonnights/600/800",
+        span: "md:col-span-1",
+    },
+    {
+        id: 3,
+        title: "Desert Storm",
+        category: "Documentary",
+        image: "https://picsum.photos/seed/desertstorm/600/800",
+        span: "md:col-span-1",
+    },
+    {
+        id: 4,
+        title: "Urban Jungle",
+        category: "Fashion",
+        image: "https://picsum.photos/seed/urbanjungle/1200/800",
+        span: "md:col-span-2",
+    },
+    {
+        id: 5,
+        title: "Deep Space",
+        category: "CGI",
+        image: "https://picsum.photos/seed/deepspace/600/800",
+        span: "md:col-span-1",
+    },
 ];
 
 export default function Gallery() {
@@ -26,15 +56,28 @@ export default function Gallery() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className={`relative rounded-2xl overflow-hidden group cursor-pointer ${index === 0 || index === 3 ? "md:col-span-2" : "md:col-span-1"
-                                }`}
+                            className={`relative rounded-2xl overflow-hidden group cursor-pointer ${item.span}`}
                         >
-                            {/* Fallback Background Color */}
-                            <div className={`absolute inset-0 ${item.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
-                            <div className="absolute inset-0 bg-neutral-900 -z-10" />
+                            {/* Image */}
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={item.image}
+                                alt={item.title}
+                                style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    objectPosition: "center",
+                                    transition: "transform 0.5s ease",
+                                }}
+                                className="group-hover:scale-105"
+                            />
 
                             {/* Content Overlay */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent opacity-100 transition-all duration-300">
+                            <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/20 to-transparent">
                                 <span className="text-sm text-neutral-400 mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
                                     {item.category}
                                 </span>
@@ -43,9 +86,7 @@ export default function Gallery() {
                                 </h3>
                             </div>
 
-                            {/* Hover Focus Effect: Sibling desaturation handled by CSS group-hover in parent if possible,
-                but for simplicity we'll keep it focused on the item itself for now 
-                or use a parent state which is heavier. Keeping it simple first. */}
+                            {/* Hover Border */}
                             <div className="absolute inset-0 border-2 border-white/0 group-hover:border-white/20 transition-colors duration-300 rounded-2xl" />
                         </motion.div>
                     ))}
