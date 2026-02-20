@@ -48,21 +48,21 @@ export default function HeroVideo() {
 
             {/* Content Container - Centered and strictly on top */}
             <div className="absolute inset-0 h-full w-full flex items-center justify-center p-8 z-30 pointer-events-none">
-                <div className="max-w-5xl w-full text-center">
+                <div className="max-w-[80%] mx-auto text-center">
                     <p
-                        className="text-3xl md:text-5xl text-[#00FF00] leading-tight tracking-tight whitespace-pre-wrap inline"
+                        className="text-4xl md:text-6xl text-[#F5F5F5] leading-tight tracking-tight whitespace-pre-wrap inline"
                         style={{
                             fontFamily: "var(--font-space-mono)",
-                            textShadow: "0 0 10px rgba(0,255,0,0.8), 0 0 20px rgba(0,255,0,0.4)"
+                            textShadow: "0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.4)"
                         }}
                     >
                         {text}
                     </p>
                     <span
-                        className="text-3xl md:text-5xl text-[#00FF00] inline-block ml-1 animate-pulse"
+                        className="text-4xl md:text-6xl text-[#F5F5F5] inline-block ml-1 animate-pulse"
                         style={{
                             fontFamily: "var(--font-space-mono)",
-                            textShadow: "0 0 10px rgba(0,255,0,0.8)"
+                            textShadow: "0 0 10px rgba(255, 255, 255, 0.7)"
                         }}
                     >
                         _
