@@ -125,7 +125,10 @@ export default function CTAFooter() {
                     </p>
 
                     {/* CTA Button */}
-                    <motion.button
+                    <motion.a
+                        href="https://wa.me/918920509133"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.98 }}
                         className="cta-main-btn"
@@ -146,13 +149,14 @@ export default function CTAFooter() {
                             boxShadow: "0 8px 32px rgba(99,102,241,0.3), 0 0 64px rgba(99,102,241,0.15)",
                             transition: "box-shadow 0.3s ease",
                             overflow: "hidden",
+                            textDecoration: "none",
                         }}
                     >
                         <span style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "10px" }}>
                             Book a Pilot
                             <ArrowRight size={20} />
                         </span>
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
             </div>
 
