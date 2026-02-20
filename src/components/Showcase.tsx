@@ -133,7 +133,7 @@ export default function Showcase() {
                         position: "relative",
                         borderRadius: "24px",
                         overflow: "hidden",
-                        maxWidth: "1100px",
+                        maxWidth: "800px",
                         margin: "0 auto",
                     }}
                 >
