@@ -44,14 +44,18 @@ export default function Manifesto() {
             >
                 {/* Right Side - ZeroShot Way (Vibrant/Video) */}
                 <div className="absolute inset-0 bg-indigo-900/20">
-                    {/* Fallback gradient/image since we don't have the video yet */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-black flex items-center justify-center">
-                        <h3 className="text-9xl font-bold text-white/10 select-none">FUTURE</h3>
+                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                        <img
+                            src="/assets/End Image.jpg"
+                            alt="The ZeroShot Way"
+                            className="absolute inset-0 w-full h-full object-cover object-center scale-[1.02]"
+                        />
+                        <div className="absolute inset-0 bg-indigo-900/30 mix-blend-overlay"></div>
                     </div>
                     {/* Label */}
                     <div className="absolute top-1/2 right-12 -translate-y-1/2 text-right pointer-events-none z-10">
-                        <span className="block text-sm tracking-widest text-indigo-400 font-bold mb-2">ZEROSHOT WAY</span>
-                        <h3 className="text-4xl md:text-6xl font-bold">Limitless<br />Creation</h3>
+                        <span className="block text-sm tracking-widest text-indigo-400 font-bold mb-2 drop-shadow-md">ZEROSHOT WAY</span>
+                        <h3 className="text-4xl md:text-6xl font-bold drop-shadow-lg">Limitless<br />Creation</h3>
                     </div>
                 </div>
 
@@ -60,10 +64,12 @@ export default function Manifesto() {
                     className="absolute inset-0 bg-neutral-900"
                     style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                 >
-                    {/* Fallback grayscale look */}
-                    <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center grayscale">
-                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=2000&auto=format&fit=crop')] bg-center bg-cover opacity-20"></div>
-                        <h3 className="text-9xl font-bold text-white/5 select-none">PAST</h3>
+                    <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
+                        <img
+                            src="/assets/Starting Image_1.jpg"
+                            alt="The Old Way"
+                            className="absolute inset-0 w-full h-full object-cover object-center opacity-30 grayscale contrast-125 scale-[1.02]"
+                        />
                     </div>
                     {/* Label */}
                     <div className="absolute top-1/2 left-12 -translate-y-1/2 text-left pointer-events-none z-10">
