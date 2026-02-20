@@ -4,6 +4,7 @@ import Manifesto from "@/components/Manifesto";
 import Gallery from "@/components/Gallery";
 import Process from "@/components/Process";
 import Pricing from "@/components/Pricing";
+import Contact from "@/components/Contact";
 import CTAFooter from "@/components/CTAFooter";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Gallery />
       <Process />
       <Pricing />
+      <Contact />
       <CTAFooter />
     </main>
   );
