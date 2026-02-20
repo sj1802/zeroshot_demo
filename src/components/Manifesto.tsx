@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Manifesto() {
     const [sliderPosition, setSliderPosition] = useState(50);
@@ -43,17 +44,16 @@ export default function Manifesto() {
                 onTouchMove={handleTouchMove}
             >
                 {/* Right Side - ZeroShot Way (Vibrant/Video) */}
-                <div className="absolute inset-0 bg-indigo-900/20">
-                    <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                        <img
-                            src="/assets/After.png"
-                            alt="The ZeroShot Way"
-                            className="absolute inset-0 w-full h-full object-cover object-center scale-[1.02]"
-                        />
-                        <div className="absolute inset-0 bg-indigo-900/30 mix-blend-overlay"></div>
-                    </div>
+                <div className="absolute inset-0 bg-indigo-900/20 overflow-hidden z-0">
+                    <img
+                        src="/assets/After.png"
+                        alt="The ZeroShot Way"
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover object-center scale-[1.02] saturate-150"
+                    />
+                    <div className="absolute inset-0 bg-indigo-900/30 mix-blend-overlay z-10"></div>
                     {/* Label */}
-                    <div className="absolute top-1/2 right-12 -translate-y-1/2 text-right pointer-events-none z-10">
+                    <div className="absolute top-1/2 right-12 -translate-y-1/2 text-right pointer-events-none z-20">
                         <span className="block text-sm tracking-widest text-indigo-400 font-bold mb-2 drop-shadow-md">ZEROSHOT WAY</span>
                         <h3 className="text-4xl md:text-6xl font-bold drop-shadow-lg">Limitless<br />Creation</h3>
                     </div>
@@ -61,18 +61,17 @@ export default function Manifesto() {
 
                 {/* Left Side - Old Way (Grayscale/Static) - Clip Path controlled by slider */}
                 <div
-                    className="absolute inset-0 bg-neutral-900"
+                    className="absolute inset-0 bg-neutral-900 overflow-hidden z-10"
                     style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                 >
-                    <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center overflow-hidden">
-                        <img
-                            src="/assets/Before.jpg"
-                            alt="The Old Way"
-                            className="absolute inset-0 w-full h-full object-cover object-center opacity-30 grayscale contrast-125 scale-[1.02]"
-                        />
-                    </div>
+                    <img
+                        src="/assets/Before.jpg"
+                        alt="The Old Way"
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover object-center grayscale brightness-75 scale-[1.02]"
+                    />
                     {/* Label */}
-                    <div className="absolute top-1/2 left-12 -translate-y-1/2 text-left pointer-events-none z-10">
+                    <div className="absolute top-1/2 left-12 -translate-y-1/2 text-left pointer-events-none z-20">
                         <span className="block text-sm tracking-widest text-neutral-500 font-bold mb-2">THE OLD WAY</span>
                         <h3 className="text-4xl md:text-6xl font-bold text-neutral-400">Physical<br />Constraints</h3>
                     </div>
