@@ -16,21 +16,25 @@ export default function ScrollSequence() {
     // Scroll progress for the container
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start start", "end end"],
+        offset: ["start start", "end start"], // Maps exactly 0 to 1 over the full 400vh
     });
 
     // Map scroll progress to frame index (0 to 39)
-    // We reserve the first 85% of the scroll for the animation playback.
-    const currentIndex = useTransform(scrollYProgress, [0, 0.85, 1], [0, frameCount - 1, frameCount - 1]);
+    // The container is 400vh tall. We want the video sequence to finish playing
+    // before the container starts sliding up. 
+    // Slide up starts at 0.75 (since 100vh is 25% of 400vh).
+    const currentIndex = useTransform(scrollYProgress, [0, 0.75], [0, frameCount - 1]);
 
-    // Slide up (y: -100%) during the last 15% to gracefully exit (simulates un-fixing)
-    const y = useTransform(scrollYProgress, [0.85, 1], ["0%", "-100%"]);
+    // Slide up (y: -100%) during the exact last 100vh of scrolling (0.75 to 1.0)
+    // This perfectly matches the speed of the content scrolling up from underneath.
+    const y = useTransform(scrollYProgress, [0.75, 1], ["0%", "-100%"]);
 
     // Text Animations (linked to start of scroll)
-    const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-    const textScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.8]);
-    const textY = useTransform(scrollYProgress, [0, 0.4], [0, -100]);
-    const textBlurVal = useTransform(scrollYProgress, [0, 0.4], [0, 10]);
+    // We adjust the speed slightly to fade out sooner so it is gone before the drop shadow overlaps.
+    const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+    const textScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+    const textY = useTransform(scrollYProgress, [0, 0.3], [0, -100]);
+    const textBlurVal = useTransform(scrollYProgress, [0, 0.3], [0, 10]);
 
     const renderFrame = (index: number) => {
         const canvas = canvasRef.current;
