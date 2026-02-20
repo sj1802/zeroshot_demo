@@ -39,7 +39,8 @@ export default function Manifesto() {
 
             <div
                 ref={containerRef}
-                className="relative w-full max-w-[1600px] h-[60vh] md:h-[80vh] mx-auto overflow-hidden cursor-ew-resize group"
+                className="relative w-full max-w-[1600px] mx-auto overflow-hidden cursor-ew-resize group"
+                style={{ minHeight: '600px', height: '70vh' }}
                 onMouseMove={handleMouseMove}
                 onTouchMove={handleTouchMove}
             >
