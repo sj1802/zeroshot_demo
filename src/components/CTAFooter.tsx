@@ -217,7 +217,7 @@ export default function CTAFooter() {
                         </p>
 
                         {/* Social icons */}
-                        <div style={{ display: "flex", gap: "12px", marginTop: "24px" }}>
+                        <div style={{ display: "flex", gap: "12px", marginTop: "24px", justifyContent: "center" }}>
                             {[
                                 { icon: Instagram, label: "Instagram" },
                                 { icon: Twitter, label: "Twitter" },
