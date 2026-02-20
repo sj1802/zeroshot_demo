@@ -46,7 +46,7 @@ export default function Manifesto() {
                 {/* Right Side - ZeroShot Way (Vibrant/Video) */}
                 <div className="absolute inset-0 bg-indigo-900/20 overflow-hidden z-0">
                     <img
-                        src="/assets/After.png"
+                        src="/assets/After_optimized.webp"
                         alt="The ZeroShot Way"
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover object-center scale-[1.02] saturate-150"
@@ -65,7 +65,7 @@ export default function Manifesto() {
                     style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                 >
                     <img
-                        src="/assets/Before.jpg"
+                        src="/assets/Before_optimized.webp"
                         alt="The Old Way"
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover object-center grayscale brightness-75 scale-[1.02]"
