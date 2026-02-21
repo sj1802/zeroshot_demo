@@ -1,12 +1,15 @@
-import HeroVideo from "@/components/HeroVideo";
+import dynamic from "next/dynamic";
 import ScrollSequence from "@/components/ScrollSequence";
-import Manifesto from "@/components/Manifesto";
-import Showcase from "@/components/Showcase";
-import Gallery from "@/components/Gallery";
-import Process from "@/components/Process";
-import Pricing from "@/components/Pricing";
-import Contact from "@/components/Contact";
-import CTAFooter from "@/components/CTAFooter";
+import HeroVideo from "@/components/HeroVideo";
+
+// Lazy-load below-the-fold sections for faster initial page load
+const Manifesto = dynamic(() => import("@/components/Manifesto"), { ssr: true });
+const Showcase = dynamic(() => import("@/components/Showcase"), { ssr: true });
+const Gallery = dynamic(() => import("@/components/Gallery"), { ssr: true });
+const Process = dynamic(() => import("@/components/Process"), { ssr: true });
+const Pricing = dynamic(() => import("@/components/Pricing"), { ssr: true });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: true });
+const CTAFooter = dynamic(() => import("@/components/CTAFooter"), { ssr: true });
 
 export default function Home() {
   return (

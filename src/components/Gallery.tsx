@@ -94,6 +94,8 @@ function GalleryCard({ item, index, hoveredId, setHoveredId }: {
             <img
                 src={item.image}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 style={{
                     position: "absolute",
                     top: 0,

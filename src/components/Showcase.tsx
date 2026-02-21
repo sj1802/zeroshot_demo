@@ -179,6 +179,7 @@ export default function Showcase() {
                     {/* Video */}
                     <video
                         autoPlay
+                        preload="metadata"
                         loop
                         muted
                         playsInline

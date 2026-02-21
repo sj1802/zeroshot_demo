@@ -52,6 +52,7 @@ export default function HeroVideo() {
             {/* Video Background */}
             <video
                 autoPlay
+                preload="metadata"
                 loop
                 muted
                 playsInline
