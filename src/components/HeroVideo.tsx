@@ -40,7 +40,7 @@ export default function HeroVideo() {
                 clearInterval(interval);
                 setTypingDone(true);
             }
-        }, 40);
+        }, 70);
         return () => clearInterval(interval);
     }, [started]);
 
