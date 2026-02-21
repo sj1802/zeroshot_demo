@@ -1,53 +1,237 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 
 const projectItems = [
     {
         id: 1,
         title: "Cyber Punk",
         category: "Commercial",
-        image: "https://picsum.photos/seed/cyber2077/800/1000",
+        image: "/assets/Cyber Punk/1.png",
+        video: "/assets/Cyber Punk/1.mp4",
         accent: "#8b5cf6",
     },
     {
         id: 2,
         title: "Neon Nights",
         category: "Music Video",
-        image: "https://picsum.photos/seed/neonlights/800/1000",
+        image: "/assets/Neon Nights/2.png",
         accent: "#6366f1",
     },
     {
         id: 3,
         title: "Desert Storm",
         category: "Documentary",
-        image: "https://picsum.photos/seed/sandstorm/800/1000",
+        image: "/assets/Desert Storm/3.png",
         accent: "#06b6d4",
     },
     {
         id: 4,
         title: "Urban Jungle",
         category: "Fashion",
-        image: "https://picsum.photos/seed/citylife/800/1000",
+        image: "/assets/Urban Jungle/4.png",
         accent: "#8b5cf6",
     },
     {
         id: 5,
-        title: "Deep Space",
-        category: "CGI",
-        image: "https://picsum.photos/seed/galaxy99/800/1000",
+        title: "Velvet Noir",
+        category: "Luxury",
+        image: "/assets/Velvet Noir/5.png",
         accent: "#06b6d4",
     },
-    {
-        id: 6,
-        title: "Golden Hour",
-        category: "Lifestyle",
-        image: "https://picsum.photos/seed/goldenhour/800/1000",
-        accent: "#6366f1",
-    },
 ];
+
+function GalleryCard({ item, index, hoveredId, setHoveredId }: {
+    item: typeof projectItems[0];
+    index: number;
+    hoveredId: number | null;
+    setHoveredId: (id: number | null) => void;
+}) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const isHovered = hoveredId === item.id;
+    const hasVideo = !!item.video;
+
+    const handleMouseEnter = () => {
+        setHoveredId(item.id);
+        if (hasVideo && videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play().catch(() => { });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredId(null);
+        if (hasVideo && videoRef.current) {
+            videoRef.current.pause();
+        }
+    };
+
+    // Staggered heights for masonry feel
+    const heights = ["480px", "400px", "440px", "420px", "460px"];
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
+            viewport={{ margin: "-50px" }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="gallery-item"
+            style={{
+                position: "relative",
+                borderRadius: "20px",
+                overflow: "hidden",
+                cursor: "pointer",
+                height: heights[index % heights.length],
+                transition: "transform 0.4s ease",
+            }}
+        >
+            {/* Static image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+                src={item.image}
+                alt={item.title}
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    transition: "transform 0.6s ease, filter 0.4s ease, opacity 0.4s ease",
+                    transform: isHovered ? "scale(1.06)" : "scale(1)",
+                    filter: hoveredId !== null && !isHovered ? "brightness(0.4)" : "brightness(1)",
+                    opacity: isHovered && hasVideo ? 0 : 1,
+                }}
+            />
+
+            {/* Video (Cyber Punk only) — plays on hover */}
+            {hasVideo && (
+                <video
+                    ref={videoRef}
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                        opacity: isHovered ? 1 : 0,
+                        transition: "opacity 0.4s ease",
+                    }}
+                >
+                    <source src={item.video} type="video/mp4" />
+                </video>
+            )}
+
+            {/* Gradient overlay */}
+            <div
+                style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: isHovered
+                        ? "linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)"
+                        : "linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%)",
+                    transition: "background 0.4s ease",
+                    pointerEvents: "none",
+                }}
+            />
+
+            {/* Glass border on hover */}
+            <div
+                style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "20px",
+                    border: isHovered ? `1px solid ${item.accent}55` : "1px solid rgba(255,255,255,0.06)",
+                    transition: "border 0.3s ease",
+                    pointerEvents: "none",
+                    zIndex: 3,
+                }}
+            />
+
+            {/* Content */}
+            <div
+                style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: "28px",
+                    zIndex: 2,
+                }}
+            >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+                    <div>
+                        <span
+                            style={{
+                                display: "block",
+                                fontSize: "0.7rem",
+                                fontWeight: 700,
+                                letterSpacing: "0.15em",
+                                color: item.accent,
+                                marginBottom: "8px",
+                                textTransform: "uppercase",
+                                opacity: isHovered ? 1 : 0.7,
+                                transition: "opacity 0.3s ease",
+                            }}
+                        >
+                            {item.category}
+                        </span>
+                        <h3
+                            style={{
+                                fontSize: "1.5rem",
+                                fontWeight: 700,
+                                margin: 0,
+                                transform: isHovered ? "translateY(0)" : "translateY(4px)",
+                                transition: "transform 0.3s ease",
+                            }}
+                        >
+                            {item.title}
+                        </h3>
+                    </div>
+
+                    {/* Icon */}
+                    <AnimatePresence>
+                        {isHovered && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                transition={{ duration: 0.2 }}
+                                style={{
+                                    width: "40px",
+                                    height: "40px",
+                                    borderRadius: "50%",
+                                    background: `${item.accent}22`,
+                                    border: `1px solid ${item.accent}44`,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexShrink: 0,
+                                }}
+                            >
+                                {hasVideo ? (
+                                    <Play size={16} style={{ color: item.accent, marginLeft: "2px" }} />
+                                ) : (
+                                    <ArrowUpRight size={16} style={{ color: item.accent }} />
+                                )}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
 
 export default function Gallery() {
     const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -123,7 +307,7 @@ export default function Gallery() {
                     </div>
                 </motion.div>
 
-                {/* Masonry-style Grid */}
+                {/* Gallery Grid */}
                 <div
                     className="gallery-grid"
                     style={{
@@ -132,137 +316,39 @@ export default function Gallery() {
                         gap: "20px",
                     }}
                 >
-                    {projectItems.map((item, index) => (
-                        <motion.div
+                    {/* Row 1: 3 items */}
+                    {projectItems.slice(0, 3).map((item, index) => (
+                        <GalleryCard
                             key={item.id}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.08 }}
-                            viewport={{ margin: "-50px" }}
-                            onMouseEnter={() => setHoveredId(item.id)}
-                            onMouseLeave={() => setHoveredId(null)}
-                            className="gallery-item"
-                            style={{
-                                position: "relative",
-                                borderRadius: "20px",
-                                overflow: "hidden",
-                                cursor: "pointer",
-                                height: index % 3 === 0 ? "480px" : index % 3 === 1 ? "380px" : "430px",
-                                transition: "transform 0.4s ease",
-                            }}
-                        >
-                            {/* Image */}
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    objectPosition: "center",
-                                    transition: "transform 0.6s ease, filter 0.4s ease",
-                                    transform: hoveredId === item.id ? "scale(1.06)" : "scale(1)",
-                                    filter: hoveredId !== null && hoveredId !== item.id ? "brightness(0.4)" : "brightness(1)",
-                                }}
-                            />
+                            item={item}
+                            index={index}
+                            hoveredId={hoveredId}
+                            setHoveredId={setHoveredId}
+                        />
+                    ))}
+                </div>
 
-                            {/* Gradient overlay */}
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    inset: 0,
-                                    background: hoveredId === item.id
-                                        ? "linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 100%)"
-                                        : "linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%)",
-                                    transition: "background 0.4s ease",
-                                }}
-                            />
-
-                            {/* Glass border on hover */}
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    inset: 0,
-                                    borderRadius: "20px",
-                                    border: hoveredId === item.id ? `1px solid ${item.accent}55` : "1px solid rgba(255,255,255,0.06)",
-                                    transition: "border 0.3s ease",
-                                    pointerEvents: "none",
-                                    zIndex: 3,
-                                }}
-                            />
-
-                            {/* Content */}
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    padding: "28px",
-                                    zIndex: 2,
-                                }}
-                            >
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                                    <div>
-                                        <span
-                                            style={{
-                                                display: "block",
-                                                fontSize: "0.7rem",
-                                                fontWeight: 700,
-                                                letterSpacing: "0.15em",
-                                                color: item.accent,
-                                                marginBottom: "8px",
-                                                textTransform: "uppercase",
-                                                opacity: hoveredId === item.id ? 1 : 0.7,
-                                                transition: "opacity 0.3s ease",
-                                            }}
-                                        >
-                                            {item.category}
-                                        </span>
-                                        <h3
-                                            style={{
-                                                fontSize: "1.5rem",
-                                                fontWeight: 700,
-                                                margin: 0,
-                                                transform: hoveredId === item.id ? "translateY(0)" : "translateY(4px)",
-                                                transition: "transform 0.3s ease",
-                                            }}
-                                        >
-                                            {item.title}
-                                        </h3>
-                                    </div>
-
-                                    {/* Arrow icon */}
-                                    <AnimatePresence>
-                                        {hoveredId === item.id && (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.5 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                exit={{ opacity: 0, scale: 0.5 }}
-                                                transition={{ duration: 0.2 }}
-                                                style={{
-                                                    width: "40px",
-                                                    height: "40px",
-                                                    borderRadius: "50%",
-                                                    background: `${item.accent}22`,
-                                                    border: `1px solid ${item.accent}44`,
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent: "center",
-                                                    flexShrink: 0,
-                                                }}
-                                            >
-                                                <ArrowUpRight size={16} style={{ color: item.accent }} />
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            </div>
-                        </motion.div>
+                {/* Row 2: 2 items centered */}
+                <div
+                    className="gallery-grid-row2"
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(2, 1fr)",
+                        gap: "20px",
+                        marginTop: "20px",
+                        maxWidth: "940px",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                    }}
+                >
+                    {projectItems.slice(3, 5).map((item, index) => (
+                        <GalleryCard
+                            key={item.id}
+                            item={item}
+                            index={index + 3}
+                            hoveredId={hoveredId}
+                            setHoveredId={setHoveredId}
+                        />
                     ))}
                 </div>
             </div>
@@ -275,6 +361,10 @@ export default function Gallery() {
                 @media (max-width: 768px) {
                     .gallery-grid {
                         grid-template-columns: 1fr !important;
+                    }
+                    .gallery-grid-row2 {
+                        grid-template-columns: 1fr !important;
+                        max-width: 100% !important;
                     }
                     .gallery-item {
                         height: 350px !important;
