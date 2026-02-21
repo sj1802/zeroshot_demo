@@ -23,12 +23,12 @@ const plans = [
     },
     {
         name: "STUDIO",
-        price: "$1,200",
-        period: "/ 15 skus",
+        price: "$2,000",
+        period: "/ 20 skus",
         desc: "Ideal for brands scaling their visual content library.",
         features: [
             "Everything in Drop-In",
-            "15 SKU Package",
+            "20 SKU Package",
             "Priority Rendering Queue",
             "Dedicated Art Director",
             "Source Files Included",
