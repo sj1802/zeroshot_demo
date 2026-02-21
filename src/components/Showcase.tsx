@@ -105,7 +105,7 @@ export default function Showcase() {
                         marginBottom: "56px",
                     }}
                 >
-                    {["AI-Powered", "4K Output", "48hr Delivery", "Zero Reshoots"].map((tag) => (
+                    {["4K Output", "48hr Delivery", "Zero Reshoots"].map((tag) => (
                         <span
                             key={tag}
                             style={{
