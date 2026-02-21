@@ -161,7 +161,7 @@ export default function Contact() {
 
                     {/* Phone Card */}
                     <motion.a
-                        href="tel:+918920509133"
+                        href="tel:+918810444967"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
@@ -230,14 +230,14 @@ export default function Contact() {
                                 Call Us
                             </h3>
                             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", lineHeight: 1.7, margin: 0 }}>
-                                +91-8920509133
+                                +91-8810444967
                             </p>
                         </div>
                     </motion.a>
 
                     {/* Email Card */}
                     <motion.a
-                        href="mailto:hello@zeroshot.studio"
+                        href="mailto:contact@zeroshot.productions"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
@@ -306,7 +306,7 @@ export default function Contact() {
                                 Email Us
                             </h3>
                             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", lineHeight: 1.7, margin: 0 }}>
-                                hello@zeroshot.studio
+                                contact@zeroshot.productions
                             </p>
                         </div>
                     </motion.a>
