@@ -118,12 +118,12 @@ export default function ScrollSequence() {
                     <motion.h1
                         className="text-center w-full mt-4 md:mt-6"
                         style={{
-                            fontSize: "clamp(4rem, 15vw, 12vw)",
-                            lineHeight: 0.85,
+                            fontSize: "clamp(3.5rem, 13vw, 11vw)",
+                            lineHeight: 0.95,
                             fontWeight: 900,
-                            fontStyle: "italic",
                             letterSpacing: "-0.03em",
                             fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+                            padding: "0 16px",
                             filter: useMotionTemplate`blur(${textBlurVal}px)`,
                         }}
                     >
@@ -142,9 +142,8 @@ export default function ScrollSequence() {
                         style={{
                             color: "white",
                             fontSize: "clamp(0.6rem, 2.5vw, 1.25rem)",
-                            fontWeight: 700,
-                            fontStyle: "italic",
-                            marginTop: "12px",
+                            fontWeight: 600,
+                            marginTop: "16px",
                             textTransform: "uppercase",
                             letterSpacing: "0.5em",
                             textShadow: "0 2px 20px rgba(0,0,0,0.5)",
