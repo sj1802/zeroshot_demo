@@ -220,37 +220,6 @@ export default function CTAFooter() {
                             Cinematic production studio redefining visual content for modern brands.
                         </p>
 
-                        {/* Social icons */}
-                        <div style={{ display: "flex", gap: "12px", marginTop: "24px", justifyContent: "center" }}>
-                            {[
-                                { icon: Instagram, label: "Instagram" },
-                                { icon: Twitter, label: "Twitter" },
-                                { icon: Linkedin, label: "LinkedIn" },
-                                { icon: Mail, label: "Email" },
-                            ].map((social) => (
-                                <a
-                                    key={social.label}
-                                    href="#"
-                                    aria-label={social.label}
-                                    className="social-icon"
-                                    style={{
-                                        width: "40px",
-                                        height: "40px",
-                                        borderRadius: "10px",
-                                        background: "rgba(255,255,255,0.04)",
-                                        border: "1px solid rgba(255,255,255,0.08)",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        color: "rgba(255,255,255,0.4)",
-                                        transition: "all 0.3s ease",
-                                        textDecoration: "none",
-                                    }}
-                                >
-                                    <social.icon size={16} />
-                                </a>
-                            ))}
-                        </div>
                     </div>
                 </div>
 
