@@ -116,14 +116,43 @@ export default function ScrollSequence() {
                 >
                     {/* H1 and P use strict text-center just in case */}
                     <motion.h1
-                        className="text-[15vw] md:text-[12vw] leading-[0.8] font-bold tracking-tighter text-white drop-shadow-2xl text-center w-full mt-4 md:mt-6"
-                        style={{ filter: useMotionTemplate`blur(${textBlurVal}px)` }}
+                        className="text-center w-full mt-4 md:mt-6"
+                        style={{
+                            fontSize: "clamp(4rem, 15vw, 12vw)",
+                            lineHeight: 0.85,
+                            fontWeight: 900,
+                            fontStyle: "italic",
+                            letterSpacing: "-0.03em",
+                            fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+                            filter: useMotionTemplate`blur(${textBlurVal}px)`,
+                        }}
                     >
-                        ZEROSHOT
+                        <span style={{ color: "white", textShadow: "0 4px 30px rgba(0,0,0,0.5)" }}>ZERO</span>
+                        <span
+                            style={{
+                                background: "linear-gradient(135deg, #8b5cf6, #6366f1, #06b6d4)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                                filter: "drop-shadow(0 4px 30px rgba(99,102,241,0.4))",
+                            }}
+                        >SHOT</span>
                     </motion.h1>
-                    <p className="text-white text-xs md:text-xl font-light mt-2 uppercase tracking-[0.5em] md:tracking-[1em] drop-shadow-lg text-center w-full">
+                    <motion.p
+                        className="text-center w-full"
+                        style={{
+                            color: "white",
+                            fontSize: "clamp(0.6rem, 2.5vw, 1.25rem)",
+                            fontWeight: 700,
+                            fontStyle: "italic",
+                            marginTop: "12px",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.5em",
+                            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+                            filter: useMotionTemplate`blur(${textBlurVal}px)`,
+                        }}
+                    >
                         PRODUCTIONS
-                    </p>
+                    </motion.p>
                 </motion.div>
 
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-black/80 z-10" />
