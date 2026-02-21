@@ -188,7 +188,7 @@ export default function Showcase() {
                             borderRadius: "24px",
                         }}
                     >
-                        <source src="/assets/Asset 3_1_1080p.mp4" type="video/mp4" />
+                        <source src="/assets/video_created_edited.mp4" type="video/mp4" />
                     </video>
 
                     {/* Play indicator overlay */}

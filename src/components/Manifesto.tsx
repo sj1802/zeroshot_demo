@@ -110,7 +110,7 @@ export default function Manifesto() {
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/assets/Before_optimized.webp"
+                        src="/assets/oldimage_before_optimized.webp"
                         alt="The Old Way"
                         style={{
                             position: "absolute",
