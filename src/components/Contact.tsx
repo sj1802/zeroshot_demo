@@ -1,9 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, ExternalLink, Copy, CheckCheck } from "lucide-react";
 
 export default function Contact() {
+    const [emailCopied, setEmailCopied] = useState(false);
+
+    const handleEmailClick = () => {
+        // Copy email to clipboard
+        navigator.clipboard.writeText("contact@zeroshot.productions").then(() => {
+            setEmailCopied(true);
+            setTimeout(() => setEmailCopied(false), 2000);
+        });
+        // Also try opening mail client
+        window.location.href = "mailto:contact@zeroshot.productions";
+    };
+
     return (
         <section
             style={{
@@ -240,8 +253,8 @@ export default function Contact() {
                     </motion.a>
 
                     {/* Email Card */}
-                    <motion.a
-                        href="mailto:contact@zeroshot.productions"
+                    <motion.div
+                        onClick={handleEmailClick}
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
@@ -254,6 +267,7 @@ export default function Contact() {
                             color: "white",
                             transition: "transform 0.3s ease",
                             display: "block",
+                            cursor: "pointer",
                         }}
                     >
                         <div
@@ -295,27 +309,40 @@ export default function Contact() {
                         <div style={{ position: "relative", zIndex: 1, padding: "40px 32px" }}>
                             <div
                                 style={{
-                                    width: "48px",
-                                    height: "48px",
-                                    borderRadius: "14px",
-                                    background: "rgba(6,182,212,0.15)",
-                                    border: "1px solid rgba(6,182,212,0.3)",
                                     display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
+                                    justifyContent: "space-between",
+                                    alignItems: "flex-start",
                                     marginBottom: "24px",
                                 }}
                             >
-                                <Mail size={22} style={{ color: "#06b6d4" }} />
+                                <div
+                                    style={{
+                                        width: "48px",
+                                        height: "48px",
+                                        borderRadius: "14px",
+                                        background: "rgba(6,182,212,0.15)",
+                                        border: "1px solid rgba(6,182,212,0.3)",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    <Mail size={22} style={{ color: "#06b6d4" }} />
+                                </div>
+                                {emailCopied ? (
+                                    <CheckCheck size={18} style={{ color: "#06b6d4" }} />
+                                ) : (
+                                    <Copy size={16} style={{ color: "rgba(255,255,255,0.25)" }} />
+                                )}
                             </div>
                             <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "12px" }}>
-                                Email Us
+                                {emailCopied ? "Copied!" : "Email Us"}
                             </h3>
                             <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", lineHeight: 1.7, margin: 0 }}>
                                 contact@zeroshot.productions
                             </p>
                         </div>
-                    </motion.a>
+                    </motion.div>
                 </div>
             </div>
 
