@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Sparkles, Zap } from "lucide-react";
+import { Check, Sparkles, Zap, Crown } from "lucide-react";
 
 const plans = [
     {
@@ -22,21 +22,39 @@ const plans = [
         gradientTo: "#6366f1",
     },
     {
-        name: "AGENCY",
+        name: "STUDIO",
         price: "$1,200",
-        period: "/ mo",
-        desc: "Dedicated production team for high-volume brands.",
+        period: "/ 15 skus",
+        desc: "Ideal for brands scaling their visual content library.",
         features: [
-            "Unlimited Requests",
+            "Everything in Drop-In",
+            "15 SKU Package",
             "Priority Rendering Queue",
             "Dedicated Art Director",
             "Source Files Included",
-            "Custom Shader Development",
         ],
         highlight: true,
         icon: Sparkles,
         accent: "#06b6d4",
         gradientFrom: "#6366f1",
+        gradientTo: "#06b6d4",
+    },
+    {
+        name: "AGENCY",
+        price: "Custom",
+        period: "",
+        desc: "Enterprise-grade production for agencies and large brands.",
+        features: [
+            "High Volume Requests",
+            "Priority Rendering Queue",
+            "Dedicated Art Director",
+            "Source Files Included",
+            "Custom Shader Development",
+        ],
+        highlight: false,
+        icon: Crown,
+        accent: "#8b5cf6",
+        gradientFrom: "#8b5cf6",
         gradientTo: "#06b6d4",
     },
 ];
@@ -126,7 +144,7 @@ export default function Pricing() {
                 </motion.div>
 
                 {/* Cards */}
-                <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "32px", alignItems: "stretch" }}>
+                <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px", alignItems: "stretch" }}>
                     {plans.map((plan, index) => {
                         const Icon = plan.icon;
                         return (
