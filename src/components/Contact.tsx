@@ -13,8 +13,8 @@ export default function Contact() {
             setEmailCopied(true);
             setTimeout(() => setEmailCopied(false), 2000);
         });
-        // Also try opening mail client
-        window.location.href = "mailto:contact@zeroshot.productions";
+        // Open Gmail compose in a new tab
+        window.open("https://mail.google.com/mail/?view=cm&to=contact@zeroshot.productions", "_blank");
     };
 
     return (
