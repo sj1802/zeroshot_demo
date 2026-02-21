@@ -1,27 +1,52 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Manifesto() {
-    const [sliderPosition, setSliderPosition] = useState(50);
     const containerRef = useRef<HTMLDivElement>(null);
+    const clipRef = useRef<HTMLDivElement>(null);
+    const handleRef = useRef<HTMLDivElement>(null);
+    const positionRef = useRef(50);
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-        const percentage = (x / rect.width) * 100;
-        setSliderPosition(percentage);
-    };
+    // Direct DOM update — bypasses React render cycle entirely
+    const updateSlider = useCallback((percentage: number) => {
+        positionRef.current = percentage;
+        if (clipRef.current) {
+            clipRef.current.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        }
+        if (handleRef.current) {
+            handleRef.current.style.left = `${percentage}%`;
+        }
+    }, []);
 
-    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-        if (!containerRef.current) return;
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = Math.max(0, Math.min(e.touches[0].clientX - rect.left, rect.width));
-        const percentage = (x / rect.width) * 100;
-        setSliderPosition(percentage);
-    };
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        const getPercentage = (clientX: number) => {
+            const rect = container.getBoundingClientRect();
+            const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+            return (x / rect.width) * 100;
+        };
+
+        const onMouseMove = (e: MouseEvent) => {
+            updateSlider(getPercentage(e.clientX));
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+            e.preventDefault(); // Prevent scroll while sliding
+            updateSlider(getPercentage(e.touches[0].clientX));
+        };
+
+        container.addEventListener("mousemove", onMouseMove, { passive: true });
+        container.addEventListener("touchmove", onTouchMove, { passive: false });
+
+        return () => {
+            container.removeEventListener("mousemove", onMouseMove);
+            container.removeEventListener("touchmove", onTouchMove);
+        };
+    }, [updateSlider]);
 
     return (
         <section className="relative bg-neutral-950 text-white overflow-hidden py-24">
@@ -29,9 +54,7 @@ export default function Manifesto() {
             <div
                 ref={containerRef}
                 className="relative w-full mx-auto overflow-hidden cursor-ew-resize group"
-                style={{ height: "85vh", minHeight: "600px", maxWidth: "1600px" }}
-                onMouseMove={handleMouseMove}
-                onTouchMove={handleTouchMove}
+                style={{ height: "85vh", minHeight: "600px", maxWidth: "1600px", touchAction: "none" }}
             >
                 {/* Background layer: ZeroShot Way (right/vibrant) - always visible behind */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -71,6 +94,7 @@ export default function Manifesto() {
 
                 {/* Foreground layer: Old Way (left/grayscale) - clipped by slider */}
                 <div
+                    ref={clipRef}
                     style={{
                         position: "absolute",
                         top: 0,
@@ -80,7 +104,8 @@ export default function Manifesto() {
                         backgroundColor: "#171717",
                         overflow: "hidden",
                         zIndex: 5,
-                        clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
+                        clipPath: "inset(0 50% 0 0)",
+                        willChange: "clip-path",
                     }}
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -120,16 +145,18 @@ export default function Manifesto() {
 
                 {/* Slider Handle */}
                 <div
+                    ref={handleRef}
                     style={{
                         position: "absolute",
                         top: 0,
                         bottom: 0,
-                        left: `${sliderPosition}%`,
+                        left: "50%",
                         width: "4px",
                         backgroundColor: "white",
                         cursor: "ew-resize",
                         zIndex: 10,
                         boxShadow: "0 0 20px rgba(255,255,255,0.5)",
+                        willChange: "left",
                     }}
                 >
                     <div

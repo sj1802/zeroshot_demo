@@ -6,7 +6,7 @@ import { usePreloadImages } from "@/hooks/usePreloadImages";
 
 const frameCount = 40;
 const getFramePath = (index: number) =>
-    `/assets/sequence/ezgif-frame-${(index + 1).toString().padStart(3, "0")}.jpg`;
+    `/assets/sequence/ezgif-frame-${(index + 1).toString().padStart(3, "0")}.webp`;
 
 export default function ScrollSequence() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
