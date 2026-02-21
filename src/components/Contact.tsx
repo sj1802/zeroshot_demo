@@ -103,6 +103,7 @@ export default function Contact() {
                                 backdropFilter: "blur(20px)",
                                 border: "1px solid rgba(255,255,255,0.08)",
                                 borderRadius: "24px",
+                                pointerEvents: "none",
                             }}
                         />
                         {/* Accent bar */}
@@ -114,6 +115,7 @@ export default function Contact() {
                                 right: 0,
                                 height: "2px",
                                 background: "linear-gradient(90deg, #8b5cf6, transparent)",
+                                pointerEvents: "none",
                             }}
                         />
                         {/* Hover glow */}
@@ -184,6 +186,7 @@ export default function Contact() {
                                 backdropFilter: "blur(20px)",
                                 border: "1px solid rgba(255,255,255,0.08)",
                                 borderRadius: "24px",
+                                pointerEvents: "none",
                             }}
                         />
                         <div
@@ -194,6 +197,7 @@ export default function Contact() {
                                 right: 0,
                                 height: "2px",
                                 background: "linear-gradient(90deg, #6366f1, transparent)",
+                                pointerEvents: "none",
                             }}
                         />
                         <div
@@ -260,6 +264,7 @@ export default function Contact() {
                                 backdropFilter: "blur(20px)",
                                 border: "1px solid rgba(255,255,255,0.08)",
                                 borderRadius: "24px",
+                                pointerEvents: "none",
                             }}
                         />
                         <div
@@ -270,6 +275,7 @@ export default function Contact() {
                                 right: 0,
                                 height: "2px",
                                 background: "linear-gradient(90deg, #06b6d4, transparent)",
+                                pointerEvents: "none",
                             }}
                         />
                         <div
